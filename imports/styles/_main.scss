@@ -1,4 +1,5 @@
 $blue: #0060fe;
+$azure: rgba(240, 248, 255, 0.65);
 
 .red {
 	color: red;
@@ -8,6 +9,7 @@ html, body {
 	font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
 	width: 70%;
 	margin: 10px auto;
+	background: $azure;
 
 }
 
