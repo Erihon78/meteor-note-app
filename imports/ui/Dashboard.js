@@ -5,7 +5,7 @@ import HeaderLink from './HeaderLink';
 export default () => {	
 	return (
 		<div>
-			<HeaderLink title='Notes application'/>
+			<HeaderLink title='Note application'/>
 			
 			<div>
 				Notes page content
