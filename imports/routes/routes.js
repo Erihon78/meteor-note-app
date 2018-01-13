@@ -5,6 +5,8 @@ import {Router, Route, Switch, withRouter, Redirect} from 'react-router-dom';
 
 import createHistory from 'history/createBrowserHistory';
 
+import { Link } from 'react-router-dom';
+
 import Signup from '../ui/Signup';
 import Dashboard from '../ui/Dashboard';
 import Login from '../ui/Login';
@@ -33,7 +35,7 @@ export const routes = (
 			  Meteor.userId() ? (
 			    <Redirect to="/link"/>
 			  ) : (
-			    <Login />
+			    <Login />			   			    				
 			  )
 			)}/>	
 			<Route path='/registration' render={() => (

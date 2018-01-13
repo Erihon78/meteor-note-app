@@ -1,12 +1,11 @@
 import React from 'react';
-import {
-	Link
-} from 'react-router-dom';
-import {
-	Accounts
-} from 'meteor/accounts-base';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-export default class Login extends React.Component {
+import { Accounts } from 'meteor/accounts-base';
+import { withTracker } from 'meteor/react-meteor-data';
+
+export class Login extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -19,20 +18,20 @@ export default class Login extends React.Component {
 		let email = this.refs.email.value.trim(),
 			password = this.refs.password.value.trim();		
 
-		Meteor.loginWithPassword({email}, password, (err) => {
+		this.props.loginWithPassword({email}, password, (err) => {
 			if (err) {
-				this.setState({error: err.reason});
+				this.setState({error: 'Unable to login. Check the Email and Password'});
 			} else {
 				this.setState({error: ''});
 			}
 		});				
 	}
-	render() {
+	render() {		
 		return (
 			<div>
 				<h2>Login Page</h2>
 
-				{this.state.error ? <p>{this.state.error}</p> : undefined}
+				{this.state.error ? <i>{this.state.error}</i> : undefined}
 
 				<form onSubmit={this.onSubmit.bind(this)}>
 					<p>
@@ -44,8 +43,21 @@ export default class Login extends React.Component {
 					<button>Login</button>
 				</form>
 				<br/>
-				<Link to='/registration'>Registration</Link>
+
+				{this.props.noLinksForTest ? undefined : <Link to={'/registration'}>Registration</Link>}				
 			</div>
 		);
 	}
 }
+
+Login.propsTypes = {
+	loginWithPassword: PropTypes.func.isRequired,
+	noLinksForTest: PropTypes.bool.isRequired
+};
+
+export default withTracker(() => {
+	return {
+		loginWithPassword: Meteor.loginWithPassword,
+		noLinksForTest: false
+	};
+})(Login);
