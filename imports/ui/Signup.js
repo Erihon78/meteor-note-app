@@ -1,37 +1,28 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {Meteor} from 'meteor/meteor';
 
-export default class Signup extends React.Component {
+import { withTracker } from 'meteor/react-meteor-data';
+
+export class Signup extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			error: '',
-			email: '',
-			password: ''
+			error: ''
 		};
-	}
-	handleInputChange(e) {
-		const target = e.target;
-		const name = target.name;
-
-		if (target.value) {
-			this.setState({
-				[name]: target.value.trim(),
-			});
-		}		
-	}
+	}	
 	onSubmit(e) {
 		e.preventDefault();
 
-		let email = this.state.email,
-			password = this.state.password;
+		let email = this.refs.email.value.trim(),
+			password = this.refs.password.value.trim();	
 
 		if (password.length < 9) {
 			return this.setState({error: 'Max 9 letters in password'});
-		}
+		}		
 
-		Accounts.createUser({			
+		this.props.createUser({			
 			email,
 			password
 		}, (err) => {
@@ -47,20 +38,32 @@ export default class Signup extends React.Component {
 			<div>
 				<h2>Create account</h2>
 
-				{this.state.error ? <p>{this.state.error}</p> : undefined}
+				{this.state.error ? <i>{this.state.error}</i> : undefined}
 
 				<form onSubmit={this.onSubmit.bind(this)} noValidate>
 					<p>
-						<input type="email" name="email" onChange={this.handleInputChange.bind(this)} placeholder="Email"/>					
+						<input type="email" name="email" ref="email" placeholder="Email" />					
 					</p>
 					<p>
-						<input type="password" name="password" placeholder="Password" onChange={this.handleInputChange.bind(this)}/>
+						<input type="password" name="password" ref="password" placeholder="Password" />
 					</p>
 					<button>Registation</button>
 				</form>
 				<br/>
-				<Link to='/'>Login</Link>
+				{this.props.noLinksForTest ? undefined : <Link to={'/Login'}>Login</Link>}
 			</div>
 		);
 	}
 };
+
+Signup.propsTypes = {
+	createUser: PropTypes.func.isRequired,
+	noLinksForTest: PropTypes.bool.isRequired
+};
+
+export default withTracker(() => {
+	return {
+		createUser: Accounts.createUser,
+		noLinksForTest: false
+	};
+})(Signup);
