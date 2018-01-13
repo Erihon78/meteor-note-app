@@ -33,14 +33,14 @@ export const routes = (
 		<Switch>	
 			<Route exact path='/' render={() => (
 			  Meteor.userId() ? (
-			    <Redirect to="/link"/>
+			    <Redirect to="/dashboard"/>
 			  ) : (
 			    <Login />			   			    				
 			  )
 			)}/>	
 			<Route path='/registration' render={() => (
 			  Meteor.userId() ? (
-			    <Redirect to="/link"/>
+			    <Redirect to="/dashboard"/>
 			  ) : (
 			    <Signup />
 			  )

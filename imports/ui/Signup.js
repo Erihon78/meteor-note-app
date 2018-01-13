@@ -50,7 +50,7 @@ export class Signup extends React.Component {
 					<button>Registation</button>
 				</form>
 				<br/>
-				{this.props.noLinksForTest ? undefined : <Link to={'/Login'}>Login</Link>}
+				{this.props.noLinksForTest ? undefined : <Link to={'/'}>Login</Link>}
 			</div>
 		);
 	}
