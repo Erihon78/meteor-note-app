@@ -56,7 +56,7 @@ export const routes = (
 				!Meteor.userId() ? (
 					<Redirect to="/"/>
 				) : (
-					<Dashboard  />
+					<Dashboard />
 				)
 			)}/>			
 			<Route path='*' component={NotFound}/>		

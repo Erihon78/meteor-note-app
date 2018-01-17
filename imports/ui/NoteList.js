@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
+import {Session} from 'meteor/session';
 
 import { Notes } from '../api/notes';
 
@@ -30,9 +31,12 @@ NoteList.propTypes = {
 	notes: PropTypes.array.isRequired
 }
 
-export default withTracker(() => {
+export default withTracker(() => {	
+	const selectedNoteId = Session.get('selectedNoteId');	
+
 	Meteor.subscribe('notes');
+
 	return {
-		notes: Notes.find().fetch()		
+		notes: Notes.find().fetch()
 	};
 })(NoteList);
