@@ -7,14 +7,13 @@ import { Session } from 'meteor/session';
 import { withTracker } from 'meteor/react-meteor-data';
 
 export const NoteListItem = (props) => {		
-	const selected = (window.location.pathname.split('/')[2] === props.note._id);		
 	return (
 		<div onClick={() => {
 			props.Session.set('selectedNoteId', props.note._id)
 		}}>
 			<h3>{ props.note.title || 'Untitled note' }</h3>			
 
-			{selected ? 'selected' : undefined}
+			{props.note.selected ? 'selected' : undefined}
 
 			<p>{ moment(props.note.updatedAt).format('DD/M/YYYY') }</p>
 		</div>

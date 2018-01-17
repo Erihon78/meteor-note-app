@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { Session } from 'meteor/session';
 
 import React from 'react';
 import {Router, Route, Switch, withRouter, Redirect} from 'react-router-dom';
@@ -56,7 +57,7 @@ export const routes = (
 				!Meteor.userId() ? (
 					<Redirect to="/"/>
 				) : (
-					<Dashboard />
+					<Dashboard />					
 				)
 			)}/>			
 			<Route path='*' component={NotFound}/>		

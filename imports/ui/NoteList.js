@@ -11,7 +11,7 @@ import NoteListHeader from './NoteListHeader';
 import NoteListItem from './NoteListItem';
 import NoteListEmptyItem from './NoteListEmptyItem';
 
-export const NoteList = (props) => {
+export const NoteList = (props) => {	
 	const notes = props.notes,
 		content = notes.map((item) => {
 			return <NoteListItem key={item._id} note={item}/>
@@ -21,8 +21,8 @@ export const NoteList = (props) => {
 	return (
 		<div>
 			<h3>NoteList: { count }</h3>			
-			{count === 0 ? emptyList : content}					
-			<NoteListHeader />				
+			<NoteListHeader />
+			{count === 0 ? emptyList : content}											
 		</div>
 	);
 };
@@ -32,11 +32,24 @@ NoteList.propTypes = {
 }
 
 export default withTracker(() => {	
-	const selectedNoteId = Session.get('selectedNoteId');	
+	const urlDashboard = location.pathname.split('/');
 
-	Meteor.subscribe('notes');
+	let selectedNoteId;
+
+	if (urlDashboard.includes('dashboard') && urlDashboard[2] && Meteor.userId()) {
+		Session.set('selectedNoteId', urlDashboard[2]);
+
+		selectedNoteId = Session.get('selectedNoteId');		
+	}	
+
+	Meteor.subscribe('notes');	
 
 	return {
-		notes: Notes.find().fetch()
+		notes: Notes.find().fetch().map((note) => {
+			return {
+				...note,
+				selected: note._id === selectedNoteId
+			}
+		})
 	};
 })(NoteList);

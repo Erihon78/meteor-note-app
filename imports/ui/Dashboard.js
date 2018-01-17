@@ -2,6 +2,7 @@ import React from 'react';
 
 import HeaderLink from './HeaderLink';
 import NoteList from './NoteList';
+import Editor from './Editor';
 
 export default () => {				
 	return (
@@ -10,7 +11,8 @@ export default () => {
 
 			<div>				
 				<NoteList />
+				<Editor />
 			</div>
 		</div>
-	)
-}
+	);
+};
