@@ -10,26 +10,11 @@ import expect from 'expect';
 import moment from 'moment';
 
 import { NoteList } from './NoteList';
+import { notes } from '../fixtures/fixtures';
 
 Enzyme.configure({
 	adapter: new Adapter()
 });
-
-const notes = [
-	{
-		_id: "1",
-		title: 'Test title 1',
-		body: '',
-		updatedAt: 0,
-		userId: '1'
-	}, {
-		_id: "2",
-		title: '',
-		body: 'Lorem Ipsum',
-		updatedAt: 0,
-		userId: '2'
-	}
-];
 
 if (Meteor.isClient) {
 	describe('NoteList', function() {

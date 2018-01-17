@@ -6,6 +6,10 @@ import { Session } from 'meteor/session';
 
 import {onAuthChange, routes} from '../imports/routes/routes';
 
+import createHistory from 'history/createBrowserHistory';
+
+const history = createHistory();
+
 import '../imports/startup/simple-schema-configuration';
 
 
@@ -14,6 +18,15 @@ Tracker.autorun(() => {
 	onAuthChange(isAuthenticated);
 });		
 
-Meteor.startup(() => {				
+Tracker.autorun(() => {
+	const selectedNoteId = Session.get('selectedNoteId');
+
+	if (selectedNoteId) {
+		history.replace(`/dashboard/${selectedNoteId}`);
+	}
+});
+
+Meteor.startup(() => {	
+	Session.set('selectedNoteId', undefined);
 	ReactDOM.render(routes, document.getElementById('app'));								
 });
