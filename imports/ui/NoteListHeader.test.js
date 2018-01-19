@@ -23,7 +23,7 @@ if (Meteor.isClient) {
 
 			wrapper.find('button').simulate('click');			
 
-			expect(spy).toHaveBeenCalledWith('notes.insert');						
+			expect(spy.calls[0].arguments[0]).toBe('notes.insert');						
 		});
 	});
 }

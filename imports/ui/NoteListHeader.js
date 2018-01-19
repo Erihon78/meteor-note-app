@@ -4,11 +4,17 @@ import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 
+import createHistory from 'history/createBrowserHistory';
+
 export class NoteListHeader extends React.Component {
 	onCreateNote(e) {
 		e.preventDefault();
 
-		this.props.meteorCall('notes.insert');				
+		this.props.meteorCall('notes.insert', (err, res) => {
+			if (res) {				
+				this.props.history.push(`/dashboard/${res}`);
+			}
+		});				
 	}
 	render() {
 		return (
@@ -20,11 +26,13 @@ export class NoteListHeader extends React.Component {
 }
 
 NoteListHeader.propsTypes = {
-	meteorCall: PropTypes.func.isRequired	
+	meteorCall: PropTypes.func.isRequired,	
+	history: PropTypes.object.isRequired
 };
 
 export default withTracker(() => {
 	return {
-		meteorCall: Meteor.call
+		meteorCall: Meteor.call,
+		history: createHistory()
 	};
 })(NoteListHeader);

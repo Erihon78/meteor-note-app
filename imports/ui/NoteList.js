@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import {Session} from 'meteor/session';
+import { Session } from 'meteor/session';
 
 import { Notes } from '../api/notes';
 
@@ -45,7 +45,9 @@ export default withTracker(() => {
 	Meteor.subscribe('notes');	
 
 	return {
-		notes: Notes.find().fetch().map((note) => {
+		notes: Notes.find({}, {
+				sort: {updatedAt: -1}
+			}).fetch().map((note) => {
 			return {
 				...note,
 				selected: note._id === selectedNoteId
