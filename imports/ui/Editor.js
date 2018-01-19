@@ -5,11 +5,9 @@ import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Session } from 'meteor/session';
 
-import createHistory from 'history/createBrowserHistory';
-
 import { Notes } from '../api/notes';
 
-const history = createHistory();
+import createHistory from 'history/createBrowserHistory';
 
 export class Editor extends React.Component {	
 	constructor(props) {
@@ -29,10 +27,10 @@ export class Editor extends React.Component {
 		this.setState({ title });
 		this.props.call('notes.update', this.props.note._id, { title });
 	}
-	noteRemove() {
-		this.props.call('notes.remove', this.props.note._id);				
-		Session.set('selectedNoteId');
-		history.push('/dashboard');
+	noteRemove() {		
+		this.props.call('notes.remove', this.props.note._id);	
+		this.props.history.push('/dashboard');
+		Session.set('selectedNoteId');				
 	}
 	componentDidUpdate(prevProps, prevState) {
 		const currentNoteId = this.props.note ? this.props.note._id : undefined,
@@ -67,7 +65,8 @@ export class Editor extends React.Component {
 Editor.propTypes = {
 	note: PropTypes.object,
 	selectNoteId: PropTypes.string,
-	call: PropTypes.func.isRequired
+	call: PropTypes.func.isRequired,
+	history: PropTypes.object.isRequired
 }
 
 export default withTracker(() => {
@@ -75,6 +74,7 @@ export default withTracker(() => {
 
 	return {
 		selectNoteId,
+		history: createHistory(),
 		call: Meteor.call,
 		note: Notes.findOne(selectNoteId)
 	}

@@ -2,7 +2,7 @@ import moment from 'moment';
 
 export const notes = [
 	{
-		_id: "1",
+		_id: "99",
 		title: 'Test title 1',
 		body: '',
 		updatedAt: moment().valueOf(),
