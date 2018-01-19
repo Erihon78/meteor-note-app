@@ -42,5 +42,56 @@ if (Meteor.isClient) {
 			expect(call).toHaveBeenCalledWith('notes.remove', notes[0]._id);			
 			expect(history.push).toHaveBeenCalledWith('/dashboard');
 		});
+
+		it('should update the note body on textarea change', function () {
+			const body = 'My new text',
+				wrapper = mount(<Editor history={history} call={call} selectNoteId={notes[0]._id} note={notes[0]}/>);	
+
+			wrapper.find('textarea').simulate('change', {
+				target: {
+					value: body
+				}
+			});
+			
+			expect(wrapper.state('body')).toBe(body);
+			expect(call).toHaveBeenCalledWith('notes.update', notes[0]._id, {body});
+		});
+
+		it('should update the note title on input change', function () {
+			const title = 'My new text for title it\'s awesome',
+				wrapper = mount(<Editor history={history} call={call} selectNoteId={notes[0]._id} note={notes[0]}/>);	
+
+			wrapper.find('input').simulate('change', {
+				target: {
+					value: title
+				}
+			});
+			
+			expect(wrapper.state('title')).toBe(title);
+			expect(call).toHaveBeenCalledWith('notes.update', notes[0]._id, {title});
+		});
+
+		it('should set state for the new note', function () {
+			const wrapper = mount(<Editor history={history} call={call}/>);	
+
+			wrapper.setProps({
+				selectedNoteId: notes[0]._id,
+				note: notes[0]
+			});
+
+			expect(wrapper.state('title')).toBe(notes[0].title);
+			expect(wrapper.state('body')).toBe(notes[0].body);
+		});
+
+		it('should set state if note prop not provided', function () {
+			const wrapper = mount(<Editor history={history} call={call}/>);	
+
+			wrapper.setProps({
+				selectedNoteId: notes[0]._id
+			});
+
+			expect(wrapper.state('title')).toBe('');
+			expect(wrapper.state('body')).toBe('');
+		});
 	});
 }
