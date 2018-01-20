@@ -28,7 +28,7 @@ export class Login extends React.Component {
 	}
 	render() {		
 		return (
-			<div>
+			<div className="auth-page">
 				<h2>Login Page</h2>
 
 				{this.state.error ? <i>{this.state.error}</i> : undefined}

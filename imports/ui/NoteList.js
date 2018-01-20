@@ -19,10 +19,12 @@ export const NoteList = (props) => {
 		count = props.notes.length,
 		emptyList = <NoteListEmptyItem />;
 	return (
-		<div>
-			<h3>NoteList: { count }</h3>			
+		<div className="note-list">
+			<span>{ count }</span>			
 			<NoteListHeader />
-			{count === 0 ? emptyList : content}											
+			<div className="notes-list">
+				{count === 0 ? emptyList : content}											
+			</div>
 		</div>
 	);
 };
@@ -42,8 +44,7 @@ export default withTracker(() => {
 		selectedNoteId = Session.get('selectedNoteId');		
 	}	
 
-	Meteor.subscribe('notes');	
-
+	Meteor.subscribe('notes');		
 	return {
 		notes: Notes.find({}, {
 				sort: {updatedAt: -1}

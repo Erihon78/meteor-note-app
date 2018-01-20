@@ -1,0 +1,55 @@
+.note-list {
+	width: 40%;
+    display: inline-block;
+    top: 0px;
+    vertical-align: top;
+    text-align: left;	
+	span {
+		text-align: center;
+		font-weight: normal;
+		font-size: 1em;
+		text-transform: lowercase;
+		position: absolute;
+		top: 10px;
+		left: 120px;
+		background: white;
+		z-index: 9;
+		padding: 8px; 
+	 	width: 20px;
+    	height: 20px;   
+    	color: $blue;
+    	border-radius: 50%;
+    	text-align: center;
+	 	line-height: 1.4em;
+    	box-sizing: content-box; 
+    	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.22);
+	}
+	.notes-list {
+		background: white;
+		box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.22);
+	    height: 90%;
+	    padding: 15px;
+	    left: 20px;
+	    position: fixed;
+	    overflow-y: auto;
+	    width: 100%;
+	}	
+	li {
+		list-style: none;
+		padding: 5px;
+		margin: 10px;
+		cursor: pointer;
+		&:hover {
+			background: $azure;
+		}		
+	}
+	.active {
+		background: $azure;
+	}	
+}
+
+.note-list-header {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+}

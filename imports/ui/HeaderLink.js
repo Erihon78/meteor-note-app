@@ -1,18 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 import { Accounts } from 'meteor/accounts-base';
 import { Session } from 'meteor/session';
 import { withTracker } from 'meteor/react-meteor-data';
 
 export const HeaderLink = (props) => {
 	const logOut = (props) => {
-		props.handleLogout(); 
+		props.handleLogout();
 		Session.set('selectedNoteId');
 	}
 	return (
-		<div>				
+		<div className="heading">				
 			<h2>{props.title}</h2>
 
 			<p>

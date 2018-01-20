@@ -35,7 +35,7 @@ export class Signup extends React.Component {
 	}
 	render() {		
 		return (
-			<div>
+			<div className="auth-page">
 				<h2>Create account</h2>
 
 				{this.state.error ? <i>{this.state.error}</i> : undefined}

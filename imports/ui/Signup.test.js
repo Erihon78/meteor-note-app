@@ -1,18 +1,12 @@
-import {
-	Meteor
-} from 'meteor/meteor';
-import Enzyme, {
-	mount
-} from 'enzyme';
+import { Meteor } from 'meteor/meteor';
+import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react';
 import expect from 'expect';
 
 import { Signup } from './Signup';
 
-Enzyme.configure({
-	adapter: new Adapter()
-});
+Enzyme.configure({ adapter: new Adapter() });
 
 if (Meteor.isClient) {
 	describe('Signup', function () {

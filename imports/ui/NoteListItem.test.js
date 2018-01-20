@@ -30,7 +30,7 @@ if (Meteor.isClient) {
 			const wrapper = mount( <NoteListItem note={notes[0]} Session={Session}/>);
 
 			expect(wrapper.find('h3').text()).toBe(notes[0].title);
-			expect(wrapper.find('p').text()).toBe(moment(notes[0].updatedAt).format('DD/M/YYYY'));
+			expect(wrapper.find('p').text()).toBe(moment(notes[0].updatedAt).format('lll'));
 		});
 
 		it('should set default title no title set', function () {
@@ -42,7 +42,7 @@ if (Meteor.isClient) {
 		it('should call set on click', function () {
 			const wrapper = mount( <NoteListItem note={notes[0]} Session={Session}/>);
 
-			wrapper.find('div').simulate('click');			
+			wrapper.find('li').simulate('click');			
 
 			expect(Session.set).toHaveBeenCalledWith('selectedNoteId', notes[0]._id);			
 		});

@@ -9,8 +9,9 @@ export default () => {
 		<div>
 			<HeaderLink title='Note application'/>					
 
-			<div>				
+			<div className="content">				
 				<NoteList />
+				<div className="divider"></div>
 				<Editor />
 			</div>
 		</div>

@@ -3,7 +3,12 @@
   "private": true,
   "scripts": {
     "start": "meteor run",
-    "test": "meteor test --driver-package=practicalmeteor:mocha -p 4000"
+    "test": "meteor test --driver-package=practicalmeteor:mocha -p 4000",
+    "lint": "eslint imports/ui/Dashboard.js",
+    "pretest": "npm run lint --silent"
+  },
+  "eslintConfig": {
+    "extends": "@meteorjs/eslint-config-meteor"
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",
@@ -24,8 +29,18 @@
     "node": "8.9.3"
   },
   "devDependencies": {
+    "@meteorjs/eslint-config-meteor": "^1.0.5",
+    "babel-eslint": "^8.2.1",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
+    "eslint": "^4.16.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-import-resolver-meteor": "^0.4.0",
+    "eslint-plugin-eslint-comments": "^2.0.2",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-meteor": "^4.1.4",
+    "eslint-plugin-react": "^7.5.1",
     "expect": "^1.20.2",
     "react-addons-test-utils": "^15.6.2"
   }

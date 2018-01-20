@@ -1,5 +1,11 @@
 $blue: #0060fe;
 $azure: rgba(240, 248, 255, 0.65);
+$red: rgb(255,61,65);
+
+@import './loginPage';
+@import './heading';
+@import './noteList';
+@import './editor';
 
 .red {
 	color: red;
@@ -7,7 +13,6 @@ $azure: rgba(240, 248, 255, 0.65);
 
 html, body {
 	font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
-	width: 70%;
 	margin: 10px auto;
 	background: $azure;
 
@@ -67,4 +72,19 @@ input[type="checkbox"] {
 	background: beige;
 	padding: 10px;
 	margin: 10px 0px;
+}
+
+.content {
+	display: inline-block;
+    width: 100%;
+    height: 100%;
+    .divider {
+    	position: fixed;
+    	top: 0px;
+    	height: 100%;
+    	width: 1px;
+    	background: gray;
+    	left: 50%;
+    	display: none;
+    }    
 }

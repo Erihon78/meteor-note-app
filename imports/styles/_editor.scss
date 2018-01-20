@@ -1,0 +1,39 @@
+.editor {	
+	width: 60%;
+    display: inline-block;
+    padding: 15px;
+    vertical-align: top;
+    text-align: left;
+    background: white;    
+    right: 0;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.22);  
+    height: 100%;  
+    position: fixed;
+	textarea {
+	 	webkit-box-sizing: border-box;
+	    -moz-box-sizing: border-box;
+	    -o-box-sizing: border-box;
+	    -ms-box-sizing: border-box;
+	    box-sizing: border-box;
+	    background: #f9f9f9;
+	    border: 1px solid #e3e3e3;
+	    border-radius: 4px;
+	    -webkit-box-shadow: none!important;
+	    box-shadow: none!important;
+	    padding: 13px 10px;
+	    width: 99%;
+	    transition: all .4s ease;
+	    display: block;
+	    margin-bottom: 15px;
+	    font-size: 0.9em;
+	    height: 60%;
+	}
+	button {
+		background: $red;
+		border: 1px solid $red;
+	}
+	h2 {
+		text-align: center;	
+		margin-top: 30%;	
+	}
+}
