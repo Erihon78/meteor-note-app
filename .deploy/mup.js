@@ -2,10 +2,10 @@ module.exports = {
   servers: {
     one: {
       // TODO: set host address, username, and authentication method
-      host: '159.89.111.156',
-      username: 'root',
-      // pem: './path/to/pem'
-      password: 'JKLLs’d’f76c37714528'
+      // host: '159.89.111.156',
+      // username: 'root',
+      // // pem: './path/to/pem'
+      // password: 'JKLLs’d’f76c37714528'
       // or neither for authenticate from ssh-agent
     }
   },
@@ -26,8 +26,8 @@ module.exports = {
     env: {
       // TODO: Change to your app's url
       // If you are using ssl, it needs to start with https://
-      ROOT_URL: 'http://159.89.111.156',
-      MONGO_URL: 'mongodb://localhost/meteor',
+      // ROOT_URL: 'http://159.89.111.156',
+      // MONGO_URL: 'mongodb://localhost/meteor',
     },
 
     // ssl: { // (optional)
