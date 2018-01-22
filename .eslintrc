@@ -1,5 +1,5 @@
 {
-    "extends": "eslint:recommended",
+    "extends": "airbnb",
     "parserOptions": {
         "ecmaVersion": 6,
         "sourceType": "module",
@@ -12,5 +12,25 @@
         "browser": true,
         "es6": true
     },
-    "plugins": ["react"]    
+    "plugins": ["react"],
+    "settings": {
+        "import/resolver": "meteor"
+    },
+    "rules": {
+        "import/no-extraneous-dependencies": 0,
+        "import/extensions": ["off", "never"],
+        "indent": [2, "tab"],
+        "no-tabs": 0,
+        "no-underscore-dangle": ["error", {
+            "allow": ["_id"]
+        }],
+        "react/jsx-filename-extension": [1, {
+            "extensions": [".js", ".jsx"]
+        }],
+        "react/no-did-update-set-state": 0,
+        "react/jsx-indent": [2, "tab"],
+        "react/jsx-indent-props": [2, "tab"],
+        "react/forbid-prop-types": 0,
+        "react/require-default-props": 0
+    }
 }
