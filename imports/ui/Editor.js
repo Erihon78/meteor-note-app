@@ -14,7 +14,7 @@ export class Editor extends React.Component {
 		super(props);
 		this.state = {
 			title: '',
-			body: '',
+			body: ''
 		};
 		this.handleTitleChange = this.handleTitleChange.bind(this);
 		this.handleBodyChange = this.handleBodyChange.bind(this);
@@ -26,7 +26,7 @@ export class Editor extends React.Component {
 		if (currentNoteId && currentNoteId !== prevNoteId) {
 			this.setState({
 				title: this.props.note.title,
-				body: this.props.note.body,
+				body: this.props.note.body
 			});
 		}
 	}
@@ -77,7 +77,7 @@ Editor.propTypes = {
 	note: PropTypes.object,
 	selectNoteId: PropTypes.string,
 	call: PropTypes.func.isRequired,
-	history: PropTypes.object.isRequired,
+	history: PropTypes.object.isRequired
 };
 
 export default withTracker(() => {
@@ -87,6 +87,6 @@ export default withTracker(() => {
 		selectNoteId,
 		history: createHistory(),
 		call: Meteor.call,
-		note: Notes.findOne(selectNoteId),
+		note: Notes.findOne(selectNoteId)
 	};
 })(Editor);
